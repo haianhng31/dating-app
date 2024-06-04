@@ -1,10 +1,12 @@
 using API.Data;
 using API.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers;
 
+[Authorize]
 public class UsersController : BaseApiController
 // ControllerBase: A base class for an MVC controller without view support.
 // 1. ControllerBase is designed for building APIs, providing a variety of methods and properties 
@@ -18,6 +20,7 @@ public class UsersController : BaseApiController
         _context = context;
     }
 
+    [AllowAnonymous]
     [HttpGet]
     public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers()
     // ActionResult is a base class that can represent various HTTP responses, 
