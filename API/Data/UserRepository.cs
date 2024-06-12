@@ -13,7 +13,11 @@ namespace API.Data
         }
         public async Task<IEnumerable<AppUser>> GetUsersAsync() 
         {
-            return await _context.Users.ToListAsync();
+            return await _context.Users
+                .Include(p => p.Photos)
+                .ToListAsync();
+            // ToList() is a LINQ method that executes the query and retrieves all AppUser records 
+            // from the database, returning them as a list.
         }
         public async Task<AppUser> GetUserByIdAsync(int id)
         {
@@ -21,7 +25,9 @@ namespace API.Data
         }
         public async Task<AppUser> GetUserByUsernameAsync(string username) 
         { 
-            return await _context.Users.SingleOrDefaultAsync(x => x.UserName == username); // or FirstOrDefault
+            return await _context.Users
+                .Include(p => p.Photos)
+                .SingleOrDefaultAsync(x => x.UserName == username); // or FirstOrDefault
         }
 
         public async Task<bool> SaveAllAsync()
