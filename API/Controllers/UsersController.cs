@@ -8,10 +8,6 @@ namespace API.Controllers;
 
 [Authorize]
 public class UsersController : BaseApiController
-// ControllerBase: A base class for an MVC controller without view support.
-// 1. ControllerBase is designed for building APIs, providing a variety of methods and properties 
-// to simplify the development of RESTful services.
-// 2. It does not include view support, which is provided by the Controller class that inherits from ControllerBase.
 
 {
     private readonly DataContext _context; // this is scoped to the http request 
@@ -20,7 +16,7 @@ public class UsersController : BaseApiController
         _context = context;
     }
 
-    [AllowAnonymous]
+    [AllowAnonymous] // a directive to specify that a particular action/controller does not require authentication.
     [HttpGet]
     public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers()
     // ActionResult is a base class that can represent various HTTP responses, 

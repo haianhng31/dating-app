@@ -14,8 +14,12 @@ namespace API.Extensions
         // 'IServiceCollection services': Specifies that this method extends the IServiceCollection type.
         {
             services.AddDbContext<DataContext>(opt => 
+            // AddDbContext: This method registers the DataContext class as a service in the DI container.
             {
                 opt.UseSqlite(config.GetConnectionString("DefaultConnection"));
+                // config.GetConnectionString("DefaultConnection"): 
+                // Retrieves the connection string from the configuration settings (e.g., appsettings.json) 
+                // using the key "DefaultConnection".
             });
             services.AddCors();
             services.AddScoped<ITokenService, TokenService>();
@@ -23,6 +27,9 @@ namespace API.Extensions
             // We can also use only AddScoped<TokenService> 
             // But using interface will help a lot with the testing later 
             // It's much easier to test against the interfaces and isolating our code 
+
+            // The choice of using AddScoped for ITokenService ensures that each HTTP request gets a fresh instance of the service, 
+            // which is crucial for handling user-specific tokens securely and efficiently.
 
             return services; 
         } 

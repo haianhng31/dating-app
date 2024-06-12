@@ -63,6 +63,10 @@ public class AccountController : BaseApiController
         {
             if (computedHash[i]!= user.PasswordHash[i]) return Unauthorized("Invalid password");
         }
+        // In C#, you can't directly compare two arrays using the == operator. 
+        // When you use "computedHash != user.PasswordHash", you're comparing references to the arrays, not their contents. 
+        // Since computedHash and user.PasswordHash are both byte arrays, 
+        // the != operator checks if they refer to the same memory location, not if their contents are equal.
 
         return new UserDto 
         {
