@@ -1,6 +1,7 @@
 using API.Data;
 using API.Interfaces;
 using API.Services;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Extensions
@@ -32,6 +33,7 @@ namespace API.Extensions
             // which is crucial for handling user-specific tokens securely and efficiently.
 
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             return services; 
         } 
