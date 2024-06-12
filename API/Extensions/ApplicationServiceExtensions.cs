@@ -31,6 +31,8 @@ namespace API.Extensions
             // The choice of using AddScoped for ITokenService ensures that each HTTP request gets a fresh instance of the service, 
             // which is crucial for handling user-specific tokens securely and efficiently.
 
+            services.AddScoped<IUserRepository, UserRepository>();
+
             return services; 
         } 
 
