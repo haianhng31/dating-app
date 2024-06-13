@@ -9,7 +9,6 @@ import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
 import { RegisterComponent } from './components/register/register.component';
 import { MembersListComponent } from './components/members/members-list/members-list.component';
-import { MembersDetailComponent } from './components/members/members-detail/members-detail.component';
 import { ListsComponent } from './components/lists/lists.component';
 import { MessagesComponent } from './components/messages/messages.component';
 import { SharedModule } from './modules/shared.module';
@@ -19,6 +18,7 @@ import { NotFoundComponent } from './components/errors/not-found/not-found.compo
 import { ServerErrorComponent } from './components/errors/server-error/server-error.component';
 import { MembersCardComponent } from './components/members/members-card/members-card.component';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 
 @NgModule({
   declarations: [
@@ -27,7 +27,6 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
     HomeComponent,
     RegisterComponent,
     MembersListComponent,
-    MembersDetailComponent,
     ListsComponent,
     MessagesComponent,
     TestErrorComponent,
@@ -41,7 +40,8 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
-    SharedModule
+    SharedModule,
+    TabsModule.forRoot()
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
