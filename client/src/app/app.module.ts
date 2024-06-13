@@ -18,6 +18,7 @@ import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { NotFoundComponent } from './components/errors/not-found/not-found.component';
 import { ServerErrorComponent } from './components/errors/server-error/server-error.component';
 import { MembersCardComponent } from './components/members/members-card/members-card.component';
+import { JwtInterceptor } from './interceptors/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { MembersCardComponent } from './components/members/members-card/members-
     SharedModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}
     // "multi: true": Angela comes with its own interceptors as well and we do not want to replace them.
   ],
   // HTTP_INTERCEPTORS is a multi-provider token that allows multiple interceptors to be registered.
